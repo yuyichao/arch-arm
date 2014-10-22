@@ -112,6 +112,7 @@ QemuCommand::exec(int argc, char *argv[])
     for (int i = 3;i < argc;i++) {
         cmd.push_back(argv[i]);
     }
+    cmd.push_back(nullptr);
     execv(cmd[0], const_cast<char* const*>(&cmd[0]));
     return errno;
 }
