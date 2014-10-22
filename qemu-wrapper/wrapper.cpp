@@ -30,6 +30,8 @@
 #include <string>
 #include <vector>
 
+extern char **environ;
+
 class QemuCommand {
     const std::string m_conf_file;
     char *m_cmd_str;
@@ -105,6 +107,10 @@ QemuCommand::exec(int argc, char *argv[])
     for (char *cur_arg = m_cmd_str;cur_arg < cmd_end;
          cur_arg += strlen(cur_arg) + 1) {
         cmd.push_back(cur_arg);
+    }
+    for (char **env = environ;*env;env++) {
+        cmd.push_back("-E");
+        cmd.push_back(*env);
     }
     cmd.push_back("-0");
     cmd.push_back(argv[2]);
