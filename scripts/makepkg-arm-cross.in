@@ -1,0 +1,7 @@
+#!/bin/bash
+
+datadir="@CMAKE_INSTALL_FULL_DATADIR@/arch-arm-cross"
+execdir="@ARCH_ARM_LIBEXEC@"
+scriptsdir="@ARCH_ARM_SCRIPTS@"
+
+makepkg --config "${datadir}/makepkg-arm.conf" "$@"
