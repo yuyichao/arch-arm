@@ -1,0 +1,45 @@
+#!/bin/bash
+
+new_root=$(realpath "$1")
+shift
+
+execdir="@ARCH_ARM_LIBEXEC@"
+scriptsdir="@ARCH_ARM_SCRIPTS@"
+
+"${execdir}/prepare-qemu"
+new_execdir="${new_root}/${execdir}/"
+
+copy_program() {
+    local orig="$1"
+    local new_dir="$2"
+    local ldd_out
+    ldd_out=$(ldd "${orig}") || return 1
+    local ld_found=0
+    while read line; do
+        [[ $line =~ ^[[:blank:]]*([^[:blank:]]+)[[:blank:]]*=\>[[:blank:]]*(/[^[:blank:]]+)[[:blank:]]* ]] && {
+            cp "${BASH_REMATCH[2]}" "${new_dir}/${BASH_REMATCH[1]}"
+            continue
+        }
+        [[ $line =~ ^[[:blank:]]*(/[^[:blank:]]+) ]] && {
+            # Already found a dynamic linker
+            ((ld_found)) && return 1
+            cp "${BASH_REMATCH[1]}" "${new_dir}"
+            basename "${BASH_REMATCH[1]}"
+        }
+    done <<EOF
+${ldd_out}
+EOF
+}
+
+mkdir -p "${new_root}/${execdir}/"
+cp "${execdir}/arch-arm-qemu" "${new_execdir}"
+cp "/usr/bin/qemu-arm" "${new_execdir}"
+
+if ld_linux=$(copy_program /usr/bin/qemu-arm \
+    "${new_execdir}" 2> /dev/null); then
+    "${scriptsdir}/write-cmd" "${new_execdir}/qemu_cmd" \
+        "${execdir}/${ld_linux}" --library-path "${execdir}" \
+        "${execdir}/qemu-arm"
+else
+    true
+fi

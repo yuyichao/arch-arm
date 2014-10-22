@@ -14,8 +14,8 @@ cmake_c_add_flags(CMAKE_CXX_FLAGS -Wall -Wextra
 cmake_c_add_flags(CMAKE_SHARED_LINKER_FLAGS -Wl,--as-needed -Wl,--no-undefined)
 cmake_c_add_flags(CMAKE_MODULE_LINKER_FLAGS -Wl,--as-needed -Wl,--no-undefined)
 
-set(ARCH_ARM_LIBEXEC
-  "${CMAKE_INSTALL_FULL_LIBDIR}/arch-arm-cross/${CMAKE_SYSTEM_PROCESSOR}")
+set(ARCH_ARM_SCRIPTS "${CMAKE_INSTALL_FULL_LIBDIR}/arch-arm-cross")
+set(ARCH_ARM_LIBEXEC "${ARCH_ARM_SCRIPTS}/${CMAKE_SYSTEM_PROCESSOR}")
 
 add_subdirectory(data)
 add_subdirectory(qemu-wrapper)
