@@ -16,3 +16,4 @@ cmake_c_add_flags(CMAKE_MODULE_LINKER_FLAGS -Wl,--as-needed -Wl,--no-undefined)
 
 add_subdirectory(data)
 add_subdirectory(qemu-wrapper)
+add_subdirectory(scripts)
