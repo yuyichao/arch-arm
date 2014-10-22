@@ -41,5 +41,6 @@ if ld_linux=$(copy_program /usr/bin/qemu-arm \
         "${execdir}/${ld_linux}" --library-path "${execdir}" \
         "${execdir}/qemu-arm"
 else
-    true
+    "${scriptsdir}/write-cmd" "${new_execdir}/qemu_cmd" \
+        "${execdir}/qemu-arm"
 fi
