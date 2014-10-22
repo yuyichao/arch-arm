@@ -7,5 +7,4 @@ add_executable(${exe_name} ${SRCS})
 
 # target_link_libraries(${exe_name})
 
-install(TARGETS ${exe_name}
-  DESTINATION "${CMAKE_INSTALL_LIBDIR}/arch-arm-cross/${CMAKE_SYSTEM_PROCESSOR}")
+install(TARGETS ${exe_name} DESTINATION "${ARCH_ARM_LIBEXEC}")
