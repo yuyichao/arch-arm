@@ -25,6 +25,7 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #include <string>
 #include <vector>
@@ -102,7 +103,7 @@ QemuCommand::exec(int argc, char *argv[])
     std::vector<const char*> cmd;
     char *cmd_end = m_cmd_str + m_cmd_len;
     for (char *cur_arg = m_cmd_str;cur_arg < cmd_end;
-         cur_arg += strlen(cur_arg)) {
+         cur_arg += strlen(cur_arg) + 1) {
         cmd.push_back(cur_arg);
     }
     cmd.push_back("-0");
