@@ -7,6 +7,7 @@ add_custom_target(qemu-cmd-conf ALL
 
 configure_file(prepare-qemu.in prepare-qemu @ONLY)
 configure_file(prepare-chroot.in prepare-chroot @ONLY)
+configure_file(pacman-arm-cross.in pacman-arm-cross @ONLY)
 
 install(FILES write-cmd
   DESTINATION "${ARCH_ARM_SCRIPTS}"
@@ -15,6 +16,10 @@ install(FILES write-cmd
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/prepare-qemu"
    "${CMAKE_CURRENT_BINARY_DIR}/prepare-chroot"
   DESTINATION "${ARCH_ARM_LIBEXEC}"
+  PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+  GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/pacman-arm-cross"
+  DESTINATION "${CMAKE_INSTALL_BINDIR}"
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd"

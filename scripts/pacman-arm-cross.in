@@ -1,0 +1,10 @@
+#!/bin/bash
+
+datadir="@CMAKE_INSTALL_FULL_DATADIR@/arch-arm-cross"
+execdir="@ARCH_ARM_LIBEXEC@"
+scriptsdir="@ARCH_ARM_SCRIPTS@"
+
+mkdir -p /usr/arm-linux-gnueabihf/pkg_root/var/lib/pacman/
+
+"${execdir}/prepare-chroot" /usr/arm-linux-gnueabihf/pkg_root/
+pacman --config "${datadir}/pacman-arm.conf" "$@"
