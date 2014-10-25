@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. arch-arm-cross-config.sh
+
+mkdir -p /usr/arm-linux-gnueabihf/pkg_root/var/lib/pacman/
+
+"${EXEC_DIR}/prepare-chroot" /usr/arm-linux-gnueabihf/pkg_root/
+pacman --config "${DATA_DIR}/pacman-arm.conf" "$@"

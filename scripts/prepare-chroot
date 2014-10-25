@@ -1,13 +1,12 @@
 #!/bin/bash
 
+. arch-arm-cross-config.sh
+
 new_root=$(realpath "$1")
 shift
 
-execdir="@ARCH_ARM_LIBEXEC@"
-scriptsdir="@ARCH_ARM_SCRIPTS@"
-
-"${execdir}/prepare-qemu"
-new_execdir="${new_root}/${execdir}/"
+"${EXEC_DIR}/prepare-qemu"
+new_execdir="${new_root}/${EXEC_DIR}/"
 
 copy_program() {
     local orig="$1"
@@ -31,16 +30,16 @@ ${ldd_out}
 EOF
 }
 
-mkdir -p "${new_root}/${execdir}/"
-cp "${execdir}/arch-arm-qemu" "${new_execdir}"
+mkdir -p "${new_root}/${EXEC_DIR}/"
+cp "${EXEC_DIR}/arch-arm-qemu" "${new_execdir}"
 cp "/usr/bin/qemu-arm" "${new_execdir}"
 
 if ld_linux=$(copy_program /usr/bin/qemu-arm \
     "${new_execdir}" 2> /dev/null); then
-    "${scriptsdir}/write-cmd" "${new_execdir}/qemu_cmd" \
-        "${execdir}/${ld_linux}" --library-path "${execdir}" \
-        "${execdir}/qemu-arm"
+    "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
+        "${EXEC_DIR}/${ld_linux}" --library-path "${EXEC_DIR}" \
+        "${EXEC_DIR}/qemu-arm"
 else
-    "${scriptsdir}/write-cmd" "${new_execdir}/qemu_cmd" \
-        "${execdir}/qemu-arm"
+    "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
+        "${EXEC_DIR}/qemu-arm"
 fi

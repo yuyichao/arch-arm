@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. arch-arm-cross-config.sh
+
+makepkg --config "${DATA_DIR}/makepkg-arm.conf" "$@"
