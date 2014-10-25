@@ -70,13 +70,13 @@ LocalFileSigLevel = Optional
 # after the header, and they will be used before the default mirrors.
 
 [core]
-Server = http://de.us.mirror.archlinuxarm.org/$arch/$repo/
+Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
 
 [extra]
-Server = http://de.us.mirror.archlinuxarm.org/$arch/$repo/
+Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
 
 [community]
-Server = http://de.us.mirror.archlinuxarm.org/$arch/$repo/
+Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
 
 # An example of a custom package repository.  See the pacman manpage for
 # tips on creating your own repositories.
