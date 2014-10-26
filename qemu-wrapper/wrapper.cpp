@@ -108,9 +108,17 @@ QemuCommand::exec(int argc, char *argv[])
          cur_arg += strlen(cur_arg) + 1) {
         cmd.push_back(cur_arg);
     }
+    std::vector<char*> envp = {};
     for (char **env = environ;*env;env++) {
-        cmd.push_back("-E");
-        cmd.push_back(*env);
+        if (!strchr(*env, ',') && strchr(*env, '=')) {
+            cmd.push_back("-E");
+            cmd.push_back(*env);
+        } else {
+            // QEMU cannot handle environment variable with "," in it
+            // Hopefully these are not one of the envs that the dynamic linker
+            // will response to. (e.g. LD_TRACE_LOADED_OBJECTS)
+            envp.push_back(*env);
+        }
     }
     cmd.push_back("-0");
     cmd.push_back(argv[2]);
@@ -118,9 +126,12 @@ QemuCommand::exec(int argc, char *argv[])
     for (int i = 3;i < argc;i++) {
         cmd.push_back(argv[i]);
     }
+    // for (unsigned i = 0;i < cmd.size();i++) {
+    //     printf("arg[%d] = '%s'\n", i, cmd[i]);
+    // }
     cmd.push_back(nullptr);
-    char *envp[] = {nullptr};
-    execve(cmd[0], const_cast<char* const*>(&cmd[0]), envp);
+    envp.push_back(nullptr);
+    execve(cmd[0], const_cast<char* const*>(&cmd[0]), &envp[0]);
     return errno;
 }
 
