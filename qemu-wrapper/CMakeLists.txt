@@ -3,9 +3,8 @@ set(SRCS
 
 set(exe_name arch-arm-qemu)
 
-set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
 add_executable(${exe_name} ${SRCS})
-
-# target_link_libraries(${exe_name})
+set_target_properties(${exe_name} PROPERTIES
+  LINK_FLAGS "-static-libgcc -static-libstdc++ -static")
 
 install(TARGETS ${exe_name} DESTINATION "${ARCH_ARM_LIBEXEC}")
