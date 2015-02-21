@@ -28,3 +28,11 @@ DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
 if [[ -f @CMAKE_INSTALL_SYSCONFDIR@/arch-arm-cross/makepkg-arm.conf ]]; then
     source @CMAKE_INSTALL_SYSCONFDIR@/arch-arm-cross/makepkg-arm.conf
 fi
+
+strip() {
+    arm-linux-gnueabihf-strip "$@"
+}
+
+objcopy() {
+    arm-linux-gnueabihf-objcopy "$@"
+}
