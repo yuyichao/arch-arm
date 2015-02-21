@@ -51,11 +51,6 @@ done
 ((gpgdir_set)) ||
     set -- --gpgdir "${ARCH_ARM_CROSS_SYSROOT}/etc/pacman.d/gnupg/" "$@"
 
-echo "ARCH_ARM_CROSS_SYSROOT=${ARCH_ARM_CROSS_SYSROOT}"
-echo "$*"
-
-exit
-
 mkdir -p "${DBPATH}"
 
 "${EXEC_DIR}/prepare-chroot" "${ARCH_ARM_CROSS_SYSROOT}"
