@@ -6,5 +6,5 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/pacman-arm.conf"
 install(FILES mirrorlist
   RENAME mirrorlist-arm-cross
   DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/pacman.d")
-install(FILES ARMv7hf.cmake
+install(FILES ARMv7hf.cmake ARMv7hf-Clang.cmake
   DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/Modules/")
