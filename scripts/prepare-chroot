@@ -35,11 +35,11 @@ cp "${EXEC_DIR}/arch-arm-qemu" "${new_execdir}"
 cp "/usr/bin/qemu-arm" "${new_execdir}"
 
 if ld_linux=$(copy_program /usr/bin/qemu-arm \
-    "${new_execdir}" 2> /dev/null); then
-    "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
-        "${EXEC_DIR}/${ld_linux}" --library-path "${EXEC_DIR}" \
-        "${EXEC_DIR}/qemu-arm"
+                           "${new_execdir}" 2> /dev/null); then
+    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
+         "${EXEC_DIR}/${ld_linux}" --library-path "${EXEC_DIR}" \
+         "${EXEC_DIR}/qemu-arm"
 else
-    "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
-        "${EXEC_DIR}/qemu-arm"
+    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
+         "${EXEC_DIR}/qemu-arm"
 fi

@@ -1,7 +1,5 @@
-#
-# makepkg-arm.conf
-# make sure this is in the same dir as makepkg-arm or adjust makepkg-arm
-#
+#!/bin/bash
+
 source /etc/makepkg.conf
 
 CARCH="armv7h"
@@ -9,7 +7,7 @@ CHOST="arm-linux-gnueabihf"
 
 export ARCH='armv7h'
 export CROSS_COMPILE='arm-linux-gnueabihf-'
-export SYSROOT='/usr/arm-linux-gnueabihf/pkg_root/'
+export SYSROOT="${ARCH_ARM_CROSS_SYSROOT:-/usr/arm-linux-gnueabihf/pkg_root/}"
 export CC='arm-linux-gnueabihf-gcc'
 export CXX='arm-linux-gnueabihf-g++'
 
@@ -20,9 +18,13 @@ CPPFLAGS="-D_FORTIFY_SOURCE=2"
 # armv7ve?
 CFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=hard -mfpu=neon -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
 CXXFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=hard -mfpu=neon -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
-LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro"
+LDFLAGS="-Wl,-O2,--sort-common,--as-needed,-z,relro"
 #-- Make Flags: change this for DistCC/SMP systems
 # MAKEFLAGS="-j5"
 #-- Debugging flags
 DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
+
+if [[ -f @CMAKE_INSTALL_SYSCONFDIR@/arch-arm-cross/makepkg-arm.conf ]]; then
+    source @CMAKE_INSTALL_SYSCONFDIR@/arch-arm-cross/makepkg-arm.conf
+fi
