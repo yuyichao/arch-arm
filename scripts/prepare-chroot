@@ -34,6 +34,11 @@ mkdir -p "${new_root}/${EXEC_DIR}/"
 cp "${EXEC_DIR}/arch-arm-qemu" "${new_execdir}"
 cp "/usr/bin/qemu-arm" "${new_execdir}"
 
+for fs in dev sys proc; do
+    umount "${new_root}/${fs}/" 2> /dev/null
+    mount --bind /"${fs}" "${new_root}/${fs}/"
+done
+
 if ld_linux=$(copy_program /usr/bin/qemu-arm \
                            "${new_execdir}" 2> /dev/null); then
     exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \

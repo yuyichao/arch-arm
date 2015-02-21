@@ -19,6 +19,7 @@ CPPFLAGS="-D_FORTIFY_SOURCE=2"
 CFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=hard -mfpu=neon -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
 CXXFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=hard -mfpu=neon -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
 LDFLAGS="-Wl,-O2,--sort-common,--as-needed,-z,relro"
+LDFLAGS+=" -Wl,-rpath-link,/usr/arm-linux-gnueabihf/lib"
 #-- Make Flags: change this for DistCC/SMP systems
 # MAKEFLAGS="-j5"
 #-- Debugging flags
