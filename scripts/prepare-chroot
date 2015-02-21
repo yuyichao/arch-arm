@@ -36,6 +36,7 @@ cp "/usr/bin/qemu-arm" "${new_execdir}"
 
 for fs in dev sys proc; do
     umount "${new_root}/${fs}/" 2> /dev/null
+    mkdir -p "${new_root}/${fs}/"
     mount --bind /"${fs}" "${new_root}/${fs}/"
 done
 
