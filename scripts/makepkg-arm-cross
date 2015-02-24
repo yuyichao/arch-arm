@@ -2,4 +2,6 @@
 
 . arch-arm-cross-config.sh
 
+# export PACMAN=pacman-arm-cross
+
 exec makepkg --config "${DATA_DIR}/makepkg-arm.conf" "$@"

@@ -2,6 +2,16 @@
 
 . arch-arm-cross-config.sh
 
+[[ -z $PACMAN_ARM_CROSS_CONFIG ]] || set -- --config "$PACMAN_ARM_CROSS_CONFIG"
+[[ -z $PACMAN_ARM_CROSS_ROOT ]] || set -- -r "$PACMAN_ARM_CROSS_ROOT"
+[[ -z $PACMAN_ARM_CROSS_DBPATH ]] || set -- -b "$PACMAN_ARM_CROSS_DBPATH"
+[[ -z $PACMAN_ARM_CROSS_CACHEDIR ]] ||
+    set -- --cachedir "$PACMAN_ARM_CROSS_CACHEDIR"
+[[ -z $PACMAN_ARM_CROSS_LOGFILE ]] ||
+    set -- --logfile "$PACMAN_ARM_CROSS_LOGFILE"
+[[ -z $PACMAN_ARM_CROSS_GPGDIR ]] ||
+    set -- --gpgdir "$PACMAN_ARM_CROSS_GPGDIR"
+
 dbpath_set=0
 cachedir_set=0
 logfile_set=0
@@ -51,7 +61,11 @@ done
 ((gpgdir_set)) ||
     set -- --gpgdir "${ARCH_ARM_CROSS_SYSROOT}/etc/pacman.d/gnupg/" "$@"
 
-mkdir -p "${DBPATH}"
+# Suppress error messages for directory preparation since certain operations
+# does not require them and pacman will generate error message when necessary
+{
+    mkdir -p "${DBPATH}"
+    "${EXEC_DIR}/prepare-chroot" "${ARCH_ARM_CROSS_SYSROOT}"
+} &> /dev/null
 
-"${EXEC_DIR}/prepare-chroot" "${ARCH_ARM_CROSS_SYSROOT}"
 exec pacman "$@"
