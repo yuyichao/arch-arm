@@ -114,7 +114,7 @@ QemuCommand::exec(int argc, char *argv[])
             cmd.push_back("-E");
             cmd.push_back(*env);
         } else {
-            // QEMU cannot handle environment variable with "," in it
+            // QEMU cannot handle environment variable with "," or "=" in it
             // Hopefully these are not one of the envs that the dynamic linker
             // will response to. (e.g. LD_TRACE_LOADED_OBJECTS)
             envp.push_back(*env);

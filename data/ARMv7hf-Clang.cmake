@@ -2,8 +2,8 @@ set(CMAKE_SYSTEM_NAME Linux)
 
 set(triple arm-linux-gnueabihf)
 
-set(CMAKE_SYSROOT /usr/arm-linux-gnueabihf/pkg_root/)
-set(CMAKE_STAGING_PREFIX /usr/arm-linux-gnueabihf/pkg_root/)
+set(CMAKE_SYSROOT /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/)
+set(CMAKE_STAGING_PREFIX /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/)
 
 set(CMAKE_C_COMPILER clang)
 set(CMAKE_C_COMPILER_TARGET ${triple})

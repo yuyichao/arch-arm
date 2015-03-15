@@ -9,11 +9,11 @@
 [options]
 # The following paths are commented out with their default values listed.
 # If you wish to use different paths, uncomment and update the paths.
-RootDir     = /usr/arm-linux-gnueabihf/pkg_root/
-DBPath      = /usr/arm-linux-gnueabihf/pkg_root/var/lib/pacman/
-CacheDir    = /usr/arm-linux-gnueabihf/pkg_root/var/cache/pacman/pkg/
-LogFile     = /usr/arm-linux-gnueabihf/pkg_root/var/log/pacman.log
-GPGDir      = /usr/arm-linux-gnueabihf/pkg_root/etc/pacman.d/gnupg/
+RootDir     = /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/
+DBPath      = /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/var/lib/pacman/
+CacheDir    = /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/var/cache/pacman/pkg/
+LogFile     = /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/var/log/pacman.log
+GPGDir      = /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/etc/pacman.d/gnupg/
 #HoldPkg     = pacman glibc
 #XferCommand = /usr/bin/curl -C - -f %u > %o
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
