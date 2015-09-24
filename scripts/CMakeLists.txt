@@ -1,7 +1,8 @@
 set(SYSROOT /usr/arm-linux-gnueabihf/)
 add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd"
   COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/write-cmd"
-  "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd" /usr/bin/qemu-arm -L "${SYSROOT}")
+  "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd" /usr/bin/qemu-arm -L "${SYSROOT}"
+  -E "LD_LIBRARY_PATH=/usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/usr/lib")
 add_custom_target(qemu-cmd-conf ALL
   DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd")
 
