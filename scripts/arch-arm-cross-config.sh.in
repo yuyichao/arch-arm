@@ -3,4 +3,4 @@
 DATA_DIR="@CMAKE_INSTALL_FULL_DATADIR@/arch-arm-cross"
 EXEC_DIR="@ARCH_ARM_LIBEXEC@"
 SCRIPTS_DIR="@ARCH_ARM_SCRIPTS@"
-export ARCH_ARM_CROSS_SYSROOT='/usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/'
+export ARCH_ARM_CROSS_SYSROOT='/usr/lib/arch-arm-cross/pkg_root/armv7/'

@@ -7,7 +7,7 @@ CHOST="arm-linux-gnueabihf"
 
 export ARCH='armv7h'
 export CROSS_COMPILE='arm-linux-gnueabihf-'
-export SYSROOT="${ARCH_ARM_CROSS_SYSROOT:-/usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/}"
+export SYSROOT="${ARCH_ARM_CROSS_SYSROOT:-/usr/lib/arch-arm-cross/pkg_root/armv7/}"
 export CC='arm-linux-gnueabihf-gcc'
 export CXX='arm-linux-gnueabihf-g++'
 

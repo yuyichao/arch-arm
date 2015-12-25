@@ -1,7 +1,7 @@
 set(CMAKE_SYSTEM_NAME Linux)
 
-set(CMAKE_SYSROOT /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/)
-set(CMAKE_STAGING_PREFIX /usr/lib/arch-arm-cross/pkg_root/arm-linux-gnueabihf/)
+set(CMAKE_SYSROOT /usr/lib/arch-arm-cross/pkg_root/armv7/)
+set(CMAKE_STAGING_PREFIX /usr/lib/arch-arm-cross/pkg_root/armv7/)
 
 set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
 set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
