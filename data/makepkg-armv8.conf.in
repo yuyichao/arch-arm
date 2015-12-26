@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CARCH="aarch64"
+CHOST="aarch64-linux-gnu"
+_ARCH_ARM_CROSS_DIR=armv8
+CFLAGS="-march=armv8-a -mtune=cortex-a57 -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
+CXXFLAGS="-march=armv8-a -mtune=cortex-a57 -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
+LDFLAGS="-Wl,-O2,--sort-common,--as-needed,-z,relro"
+LDFLAGS+=" -Wl,-rpath-link,/usr/aarch64-linux-gnu/lib"
+
+source "$(dirname "${BASH_SOURCE[0]}")/makepkg-arm-general.conf"

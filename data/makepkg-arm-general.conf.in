@@ -1,0 +1,31 @@
+#!/bin/bash
+
+source /etc/makepkg.conf
+
+export ARCH="${CARCH}"
+export CROSS_COMPILE="${CHOST}-"
+export SYSROOT="${ARCH_ARM_CROSS_SYSROOT:-/usr/lib/arch-arm-cross/pkg_root/${_ARCH_ARM_CROSS_DIR}/}"
+export CC="${CROSS_COMPILE}gcc"
+export CXX="${CROSS_COMPILE}g++"
+
+#-- Compiler and Linker Flags
+# -march (or -mcpu) builds exclusively for an architecture
+# -mtune optimizes for an architecture, but builds for whole processor family
+CPPFLAGS="-D_FORTIFY_SOURCE=2"
+#-- Make Flags: change this for DistCC/SMP systems
+# MAKEFLAGS="-j5"
+#-- Debugging flags
+DEBUG_CFLAGS="-g -fvar-tracking-assignments"
+DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
+
+if [[ -f @CMAKE_INSTALL_SYSCONFDIR@/arch-arm-cross/makepkg-arm.conf ]]; then
+    source @CMAKE_INSTALL_SYSCONFDIR@/arch-arm-cross/makepkg-arm.conf
+fi
+
+eval "strip() {
+    ${CROSS_COMPILE}strip \"$@\"
+}"
+
+eval "objcopy() {
+    ${CROSS_COMPILE}objcopy \"$@\"
+}"

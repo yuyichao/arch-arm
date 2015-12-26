@@ -4,4 +4,4 @@
 
 # export PACMAN=pacman-arm-cross
 
-exec makepkg --config "${DATA_DIR}/makepkg-arm.conf" "$@"
+exec makepkg --config "${DATA_DIR}/makepkg-armv7.conf" "$@"
