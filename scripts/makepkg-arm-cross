@@ -1,8 +1,11 @@
 #!/bin/bash
 
 . arch-arm-cross-config.sh
-export ARCH_ARM_CROSS_SYSROOT="${ARCH_ARM_CROSS_PKG_ROOT}/armv7/"
+arm_arch=$(determine_arch_name) || {
+    echo "Cannot determine ARM arch name" >&2
+    exit 1
+}
 
-# export PACMAN=pacman-arm-cross
+export ARCH_ARM_CROSS_SYSROOT="${ARCH_ARM_CROSS_PKG_ROOT}/${arm_arch}/"
 
-exec makepkg --config "${DATA_DIR}/makepkg-armv7.conf" "$@"
+exec makepkg --config "${DATA_DIR}/makepkg-${arm_arch}.conf" "$@"

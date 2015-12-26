@@ -4,3 +4,16 @@ DATA_DIR="@CMAKE_INSTALL_FULL_DATADIR@/arch-arm-cross"
 EXEC_DIR="@ARCH_ARM_LIBEXEC@"
 SCRIPTS_DIR="@ARCH_ARM_SCRIPTS@"
 ARCH_ARM_CROSS_PKG_ROOT='/usr/lib/arch-arm-cross/pkg_root/'
+
+determine_arch_name() {
+    if [[ -n ${ARCH_ARM_CROSS_ARCH} ]]; then
+        echo "${ARCH_ARM_CROSS_ARCH}"
+        return 0
+    fi
+    if [[ $1 =~ -\(armv[0-9]*\)$ ]]; then
+        export ARCH_ARM_CROSS_ARCH="${BASH_REMATCH[1]}"
+        echo "${ARCH_ARM_CROSS_ARCH}"
+        return 0
+    fi
+    return 1
+}
