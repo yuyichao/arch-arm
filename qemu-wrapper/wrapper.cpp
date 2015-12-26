@@ -145,7 +145,7 @@ main(int argc, char *argv[])
     if (size_t arglen = strlen(argv[0])) {
         const auto suffix_len = strlen("-aarch64");
         arm64 = arglen > suffix_len && memcmp(argv[0] + arglen - suffix_len,
-                                              "-aarch64", suffix_len);
+                                              "-aarch64", suffix_len) == 0;
     }
     QemuCommand qemu_cmd(exe_dir, arm64);
     return qemu_cmd.exec(argc, argv);
