@@ -1,4 +1,4 @@
-/* Copyright (C) 2014~2014 by Yichao Yu
+/* Copyright (C) 2014~2015 by Yichao Yu
  * yyc1992@gmail.com
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ class QemuCommand {
     void set_cmd(const char *cmd, size_t size=0);
     void try_mmap();
 public:
-    inline QemuCommand(const std::string &exe_dir);
+    inline QemuCommand(const std::string &exe_dir, bool arm64);
     inline ~QemuCommand();
 
     int exec(int argc, char *argv[]);
@@ -82,14 +82,14 @@ QemuCommand::try_mmap()
 }
 
 inline
-QemuCommand::QemuCommand(const std::string &exe_dir)
-    : m_conf_file(exe_dir + "/qemu_cmd"),
+QemuCommand::QemuCommand(const std::string &exe_dir, bool arm64)
+    : m_conf_file(exe_dir + (arm64 ? "/qemu_cmd_aarch64" : "/qemu_cmd_arm")),
       m_cmd_str(nullptr), m_cmd_len(0)
 {
     try_mmap();
     if (!m_cmd_str) {
         // TODO set at config time or find at run time.
-        set_cmd("/usr/bin/qemu-arm");
+        set_cmd(arm64 ? "/usr/bin/qemu-arm" : "/usr/bin/qemu-aarch64");
     }
 }
 
@@ -141,6 +141,12 @@ main(int argc, char *argv[])
     char *exe_path = realpath(argv[0], NULL);
     std::string exe_dir = dirname(exe_path);
     free(exe_path);
-    QemuCommand qemu_cmd(exe_dir);
+    bool arm64 = false;
+    if (size_t arglen = strlen(argv[0])) {
+        const auto suffix_len = strlen("-aarch64");
+        arm64 = arglen > suffix_len && memcmp(argv[0] + arglen - suffix_len,
+                                              "-aarch64", suffix_len);
+    }
+    QemuCommand qemu_cmd(exe_dir, arm64);
     return qemu_cmd.exec(argc, argv);
 }

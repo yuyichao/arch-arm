@@ -1,10 +1,10 @@
 set(SYSROOT /usr/arm-linux-gnueabihf/)
-add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd"
+add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_arm"
   COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/write-cmd"
-  "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd" /usr/bin/qemu-arm -L "${SYSROOT}"
+  "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_arm" /usr/bin/qemu-arm -L "${SYSROOT}"
   -E "LD_LIBRARY_PATH=/usr/lib/arch-arm-cross/pkg_root/armv7/usr/lib")
-add_custom_target(qemu-cmd-conf ALL
-  DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd")
+add_custom_target(qemu-cmd-arm-conf ALL
+  DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_arm")
 
 configure_file(arch-arm-cross-config.sh.in arch-arm-cross-config.sh @ONLY)
 
@@ -26,5 +26,5 @@ install(FILES pacman-arm-cross makepkg-arm-cross
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_arm"
   DESTINATION "${ARCH_ARM_LIBEXEC}")

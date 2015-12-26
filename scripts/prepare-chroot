@@ -31,7 +31,7 @@ EOF
 }
 
 mkdir -p "${new_root}/${EXEC_DIR}/"
-cp "${EXEC_DIR}/arch-arm-qemu" "${new_execdir}"
+cp "${EXEC_DIR}/arch-qemu-arm" "${new_execdir}"
 cp "/usr/bin/qemu-arm" "${new_execdir}"
 
 for fs in dev sys proc; do
@@ -42,10 +42,10 @@ done
 
 if ld_linux=$(copy_program /usr/bin/qemu-arm \
                            "${new_execdir}" 2> /dev/null); then
-    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
+    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd_arm" \
          "${EXEC_DIR}/${ld_linux}" --library-path "${EXEC_DIR}" \
          "${EXEC_DIR}/qemu-arm"
 else
-    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd" \
+    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd_arm" \
          "${EXEC_DIR}/qemu-arm"
 fi
