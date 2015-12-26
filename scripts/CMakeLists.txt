@@ -6,7 +6,7 @@ add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_arm"
 add_custom_target(qemu-cmd-arm-conf ALL
   DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_arm")
 
-set(SYSROOT_AARCH64 /usr/aarch-linux-gnu/)
+set(SYSROOT_AARCH64 /usr/aarch64-linux-gnu/)
 add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_aarch64"
   COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/write-cmd"
   "${CMAKE_CURRENT_BINARY_DIR}/qemu_cmd_aarch64"
