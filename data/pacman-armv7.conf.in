@@ -1,0 +1,25 @@
+#
+# /etc/pacman.conf
+#
+# See the pacman.conf(5) manpage for option and repository directives
+
+#
+# GENERAL OPTIONS
+#
+[options]
+RootDir     = /usr/lib/arch-arm-cross/pkg_root/armv7/
+DBPath      = /usr/lib/arch-arm-cross/pkg_root/armv7/var/lib/pacman/
+CacheDir    = /usr/lib/arch-arm-cross/pkg_root/armv7/var/cache/pacman/pkg/
+LogFile     = /usr/lib/arch-arm-cross/pkg_root/armv7/var/log/pacman.log
+GPGDir      = /usr/lib/arch-arm-cross/pkg_root/armv7/etc/pacman.d/gnupg/
+Architecture = armv7h
+Include     = @CMAKE_INSTALL_DATADIR@/arch-arm-cross/pacman-arm-options.conf
+
+[core]
+Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
+
+[extra]
+Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
+
+[community]
+Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
