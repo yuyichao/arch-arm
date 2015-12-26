@@ -5,6 +5,17 @@ arm_arch=$(determine_arch_name "$0") || {
     echo "Cannot determine ARM arch name" >&2
     exit 1
 }
+case ${arm_arch} in
+    armv7)
+        arch_name=arm
+        ;;
+    armv8)
+        arch_name=aarch64
+        ;;
+    *)
+        echo "Unsupported ARM arch name: $arm_arch" >&2
+        ;;
+esac
 
 export ARCH_ARM_CROSS_SYSROOT="${ARCH_ARM_CROSS_PKG_ROOT}/${arm_arch}/"
 
@@ -71,7 +82,7 @@ done
 # does not require them and pacman will generate error message when necessary
 {
     mkdir -p "${DBPATH}"
-    "${EXEC_DIR}/prepare-chroot" arm "${ARCH_ARM_CROSS_SYSROOT}"
+    "${EXEC_DIR}/prepare-chroot" "${arch_name}" "${ARCH_ARM_CROSS_SYSROOT}"
 } &> /dev/null
 
 exec pacman "$@"
