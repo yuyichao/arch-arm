@@ -1,7 +1,12 @@
 #!/bin/bash
 
 . arch-arm-cross-config.sh
-export ARCH_ARM_CROSS_SYSROOT="${ARCH_ARM_CROSS_PKG_ROOT}/armv7/"
+arm_arch=$(determine_arch_name "$0") || {
+    echo "Cannot determine ARM arch name" >&2
+    exit 1
+}
+
+export ARCH_ARM_CROSS_SYSROOT="${ARCH_ARM_CROSS_PKG_ROOT}/${arm_arch}/"
 
 [[ -z $PACMAN_ARM_CROSS_CONFIG ]] || set -- --config "$PACMAN_ARM_CROSS_CONFIG"
 [[ -z $PACMAN_ARM_CROSS_ROOT ]] || set -- -r "$PACMAN_ARM_CROSS_ROOT"
@@ -50,7 +55,7 @@ for ((i = 1;i <= $#;i++)); do
     esac
 done
 
-((config_set)) || set -- --config "${DATA_DIR}/pacman-armv7.conf" "$@"
+((config_set)) || set -- --config "${DATA_DIR}/pacman-${arm_arch}.conf" "$@"
 ((dbpath_set)) || {
     DBPATH=${ARCH_ARM_CROSS_SYSROOT}/var/lib/pacman
     set -- --dbpath "${DBPATH}" "$@"

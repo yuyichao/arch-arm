@@ -37,9 +37,8 @@ install(FILES prepare-qemu-arm prepare-qemu-aarch64 prepare-chroot
   DESTINATION "${ARCH_ARM_LIBEXEC}"
   PERMISSIONS ${exec_perm})
 
-install(FILES pacman-arm-cross
-  DESTINATION "${CMAKE_INSTALL_BINDIR}"
-  PERMISSIONS ${exec_perm})
+install_bin_exec(pacman-arm-cross pacman-armv7)
+install_bin_exec(pacman-arm-cross pacman-armv8)
 
 install_bin_exec(makepkg-arm-cross makepkg-armv7)
 install_bin_exec(makepkg-arm-cross makepkg-armv8)

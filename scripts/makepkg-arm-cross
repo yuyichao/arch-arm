@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . arch-arm-cross-config.sh
-arm_arch=$(determine_arch_name) || {
+arm_arch=$(determine_arch_name "$0") || {
     echo "Cannot determine ARM arch name" >&2
     exit 1
 }
