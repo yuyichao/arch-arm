@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . arch-arm-cross-config.sh
+export ARCH_ARM_CROSS_SYSROOT="${ARCH_ARM_CROSS_PKG_ROOT}/armv7/"
 
 # export PACMAN=pacman-arm-cross
 
