@@ -10,7 +10,7 @@ determine_arch_name() {
         echo "${ARCH_ARM_CROSS_ARCH}"
         return 0
     fi
-    if [[ $1 =~ -\(armv[0-9]*\)$ ]]; then
+    if [[ $1 =~ -(armv[0-9]*)$ ]]; then
         export ARCH_ARM_CROSS_ARCH="${BASH_REMATCH[1]}"
         echo "${ARCH_ARM_CROSS_ARCH}"
         return 0

@@ -13,13 +13,13 @@ CacheDir    = /usr/lib/arch-arm-cross/pkg_root/armv7/var/cache/pacman/pkg/
 LogFile     = /usr/lib/arch-arm-cross/pkg_root/armv7/var/log/pacman.log
 GPGDir      = /usr/lib/arch-arm-cross/pkg_root/armv7/etc/pacman.d/gnupg/
 Architecture = armv7h
-Include     = @CMAKE_INSTALL_DATADIR@/arch-arm-cross/pacman-arm-options.conf
+Include     = @CMAKE_INSTALL_FULL_DATADIR@/arch-arm-cross/pacman-arm-options.conf
 
 [core]
-Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
+Include = @CMAKE_INSTALL_FULL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
 
 [extra]
-Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
+Include = @CMAKE_INSTALL_FULL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
 
 [community]
-Include = @CMAKE_INSTALL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
+Include = @CMAKE_INSTALL_FULL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
