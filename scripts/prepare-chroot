@@ -5,7 +5,7 @@
 new_root=$(realpath "$1")
 shift
 
-"${EXEC_DIR}/prepare-qemu"
+"${EXEC_DIR}/prepare-qemu-arm"
 new_execdir="${new_root}/${EXEC_DIR}/"
 
 copy_program() {
