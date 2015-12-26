@@ -2,10 +2,17 @@
 
 . arch-arm-cross-config.sh
 
+arm_arch=$1
+shift
 new_root=$(realpath "$1")
 shift
 
-"${EXEC_DIR}/prepare-qemu-arm"
+if [[ $arm_arch != arm ]] && [[ $arm_arch != aarch64 ]]; then
+    echo "Invalid arm arch: $arm_arch." >& /dev/null
+    exit 1
+fi
+
+"${EXEC_DIR}/prepare-qemu-${arm_arch}"
 new_execdir="${new_root}/${EXEC_DIR}/"
 
 copy_program() {
@@ -31,8 +38,8 @@ EOF
 }
 
 mkdir -p "${new_root}/${EXEC_DIR}/"
-cp "${EXEC_DIR}/arch-qemu-arm" "${new_execdir}"
-cp "/usr/bin/qemu-arm" "${new_execdir}"
+cp "${EXEC_DIR}/arch-qemu-${arm_arch}" "${new_execdir}"
+cp "/usr/bin/qemu-${arm_arch}" "${new_execdir}"
 
 for fs in dev sys proc; do
     umount "${new_root}/${fs}/" 2> /dev/null
@@ -40,12 +47,12 @@ for fs in dev sys proc; do
     mount --bind /"${fs}" "${new_root}/${fs}/"
 done
 
-if ld_linux=$(copy_program /usr/bin/qemu-arm \
+if ld_linux=$(copy_program /usr/bin/qemu-${arm_arch} \
                            "${new_execdir}" 2> /dev/null); then
-    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd_arm" \
+    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd_${arm_arch}" \
          "${EXEC_DIR}/${ld_linux}" --library-path "${EXEC_DIR}" \
-         "${EXEC_DIR}/qemu-arm"
+         "${EXEC_DIR}/qemu-${arm_arch}"
 else
-    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd_arm" \
-         "${EXEC_DIR}/qemu-arm"
+    exec "${SCRIPTS_DIR}/write-cmd" "${new_execdir}/qemu_cmd_${arm_arch}" \
+         "${EXEC_DIR}/qemu-${arm_arch}"
 fi

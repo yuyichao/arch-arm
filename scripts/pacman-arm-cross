@@ -66,7 +66,7 @@ done
 # does not require them and pacman will generate error message when necessary
 {
     mkdir -p "${DBPATH}"
-    "${EXEC_DIR}/prepare-chroot" "${ARCH_ARM_CROSS_SYSROOT}"
+    "${EXEC_DIR}/prepare-chroot" arm "${ARCH_ARM_CROSS_SYSROOT}"
 } &> /dev/null
 
 exec pacman "$@"
