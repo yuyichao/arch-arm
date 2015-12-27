@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source /etc/makepkg.conf
-
 export ARCH="${CARCH}"
 export CROSS_COMPILE="${CHOST}-"
 export SYSROOT="${ARCH_ARM_CROSS_SYSROOT:-/usr/lib/arch-arm-cross/pkg_root/${_ARCH_ARM_CROSS_DIR}/}"

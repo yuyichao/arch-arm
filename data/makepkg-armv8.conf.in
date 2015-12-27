@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /etc/makepkg.conf
+
 CARCH="aarch64"
 CHOST="aarch64-linux-gnu"
 _ARCH_ARM_CROSS_DIR=armv8

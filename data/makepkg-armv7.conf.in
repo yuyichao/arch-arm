@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /etc/makepkg.conf
+
 CARCH="armv7h"
 CHOST="arm-linux-gnueabihf"
 _ARCH_ARM_CROSS_DIR=armv7
