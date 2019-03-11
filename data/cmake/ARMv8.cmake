@@ -1,4 +1,5 @@
 set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR aarch64)
 
 set(CMAKE_SYSROOT /usr/lib/arch-arm-cross/pkg_root/armv8/)
 if(NOT DEFINED CMAKE_STAGING_PREFIX)
