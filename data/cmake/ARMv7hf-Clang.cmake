@@ -4,13 +4,6 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 set(triple arm-linux-gnueabihf)
 
 set(CMAKE_SYSROOT /usr/lib/arch-arm-cross/pkg_root/armv7/)
-if(NOT DEFINED CMAKE_STAGING_PREFIX)
-  if(DEFINED CMAKE_INSTALL_PREFIX)
-    set(CMAKE_STAGING_PREFIX "${CMAKE_INSTALL_PREFIX}")
-  else()
-    set(CMAKE_STAGING_PREFIX "/usr/local")
-  endif()
-endif()
 set(CMAKE_FIND_NO_INSTALL_PREFIX TRUE)
 
 set(CMAKE_C_COMPILER clang)
