@@ -1,7 +1,8 @@
 #!/bin/sh
 
-for f in usr/aarch64-linux-*/lib/libc.so usr/arm-linux-*/lib/libc.so; do
+for f in /usr/aarch64-linux-*/lib/libc.so /usr/arm-linux-*/lib/libc.so; do
     if [ -f "$f" ]; then
-        sed -i "$f" -e "s://lib/l:l:g"
+        echo "Updating $f."
+        sed -i "$f" -e "s://*lib/l:l:g"
     fi
 done
