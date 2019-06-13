@@ -24,3 +24,6 @@ install(FILES
   cmake/ARMv7hf.cmake cmake/ARMv7hf-Clang.cmake
   cmake/ARMv8.cmake cmake/ARMv8-Clang.cmake
   DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/Modules/")
+
+install(FILES fix-lib-searchpath.hook
+  DESTINATION "${CMAKE_INSTALL_DATADIR}/libalpm/hooks/")

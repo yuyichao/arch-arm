@@ -29,7 +29,7 @@ function(install_bin_exec file rename)
     PERMISSIONS ${exec_perm})
 endfunction()
 
-install(FILES write-cmd
+install(FILES write-cmd fix-lib-searchpath
   DESTINATION "${ARCH_ARM_SCRIPTS}"
   PERMISSIONS ${exec_perm})
 

@@ -1,0 +1,11 @@
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Target = usr/aarch64-linux-*/lib/libc.so
+Target = usr/arm-linux-*/lib/libc.so
+
+[Action]
+Description = Fixing cross compiling library search path
+When = PostTransaction
+Exec = /usr/lib/arch-arm-cross/fix-lib-searchpath
