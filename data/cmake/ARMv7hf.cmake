@@ -6,6 +6,7 @@ set(CMAKE_FIND_NO_INSTALL_PREFIX TRUE)
 
 set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
 set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+include_directories("${CMAKE_SYSROOT}/usr/include")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
