@@ -3,11 +3,11 @@
 source /etc/makepkg.conf
 
 CARCH="armv7h"
-CHOST="arm-linux-gnueabihf"
+CHOST="armv7l-linux-gnueabihf"
 _ARCH_ARM_CROSS_DIR=armv7
 CFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=hard -mfpu=neon -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
 CXXFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=hard -mfpu=neon -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
 LDFLAGS="-Wl,-O2,--sort-common,--as-needed,-z,relro"
-LDFLAGS+=" -Wl,-rpath-link,/usr/arm-linux-gnueabihf/lib"
+LDFLAGS+=" -Wl,-rpath-link,/usr/armv7l-linux-gnueabihf/lib"
 
 source "$(dirname "${BASH_SOURCE[0]}")/makepkg-arm-general.conf"

@@ -1,7 +1,7 @@
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
-set(triple arm-linux-gnueabihf)
+set(triple armv7l-linux-gnueabihf)
 
 set(CMAKE_SYSROOT /usr/lib/arch-arm-cross/pkg_root/armv7/)
 set(CMAKE_FIND_NO_INSTALL_PREFIX TRUE)

@@ -4,8 +4,8 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 set(CMAKE_SYSROOT /usr/lib/arch-arm-cross/pkg_root/armv7/)
 set(CMAKE_FIND_NO_INSTALL_PREFIX TRUE)
 
-set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
-set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+set(CMAKE_C_COMPILER armv7l-linux-gnueabihf-gcc)
+set(CMAKE_CXX_COMPILER armv7l-linux-gnueabihf-g++)
 include_directories("${CMAKE_SYSROOT}/usr/include")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)

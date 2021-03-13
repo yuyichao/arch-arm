@@ -4,6 +4,7 @@ Operation = Install
 Operation = Upgrade
 Target = usr/aarch64-linux-*/lib/libc.so
 Target = usr/arm-linux-*/lib/libc.so
+Target = usr/armv7l-linux-*/lib/libc.so
 # Trigger on install/update
 Target = usr/lib/arch-arm-cross/fix-lib-searchpath
 
