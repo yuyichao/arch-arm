@@ -23,3 +23,9 @@ Include = @CMAKE_INSTALL_FULL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
 
 [community]
 Include = @CMAKE_INSTALL_FULL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
+
+[alarm]
+Include = @CMAKE_INSTALL_FULL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
+
+[aur]
+Include = @CMAKE_INSTALL_FULL_SYSCONFDIR@/pacman.d/mirrorlist-arm-cross
