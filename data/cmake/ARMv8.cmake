@@ -6,7 +6,7 @@ set(CMAKE_FIND_NO_INSTALL_PREFIX TRUE)
 
 set(CMAKE_C_COMPILER aarch64-linux-gnu-gcc)
 set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
-include_directories("${CMAKE_SYSROOT}/usr/include")
+include_directories(AFTER SYSTEM "${CMAKE_SYSROOT}/usr/include")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
